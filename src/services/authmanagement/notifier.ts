@@ -129,7 +129,7 @@ export default function noitifer(app) {
               email: user.email,
               activityId: activity._id,
               token:
-                "https://localhost:3000/verify-email/" + _token,
+                "https://beta.vittle.ca/verify-email/" + _token,
               language: user.settings.language,
             }),
           };
@@ -163,7 +163,7 @@ export default function noitifer(app) {
             html: ResetPasswordEmail({
               firstName: user.firstName,
               token:
-                "https://localhost:3000/reset-password/" +
+                "https://beta.vittle.ca/reset-password/" +
                 user.resetToken,
               language: user.settings.language,
             }),
