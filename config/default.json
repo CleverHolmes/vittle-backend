@@ -1,0 +1,39 @@
+{
+  "host": "localhost",
+  "port": 443,
+  "public": "../public/",
+  "paginate": {
+    "default": 10000,
+    "max": 10000
+  },
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "l6rGGgVliX81Ib2a17HzgC+Mxq4=",
+    "authStrategies": ["jwt", "local", "facebook"],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    },
+    "oauth": {
+      "redirect": "http://localhost:3000/oauth-success",
+      "facebook": {
+        "redirect_uri": "http://localhost:3033/oauth/facebook/callback",
+        "key": "667762834048395",
+        "secret": "7112eeb14b3c40add7f2532e8ebf1164",
+        "scope": ["email, public_profile"]
+      }
+    }
+  },
+  "mailchimpApiKey": "86fff515dd34aa056649a8c9132bbd3d-us19",
+  "mongodb": "mongodb://127.0.0.1:27017/vittle_2_admin_server"
+}
