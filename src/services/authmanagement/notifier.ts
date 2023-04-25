@@ -2,6 +2,9 @@ import VerifySignUpEmail from "../../email-templates/authmanagement/verify-signu
 import DeletedAccount from "../../email-templates/authmanagement/delete-account";
 import CreatedAccount from "../../email-templates/authmanagement/create-account";
 import ResetPasswordEmail from "../../email-templates/authmanagement/reset-password";
+// For testing
+const fs = require('fs');
+const filePath = './console.log';
 
 export default function noitifer(app) {
   function getLink(type, hash) {
@@ -25,6 +28,7 @@ export default function noitifer(app) {
     notifier: async function (type, user, notifierOptions) {
       //console.log("*******************************************************")
       console.log("here is notifier")
+     
       //console.log("*******************************************************")
       let tokenLink;
       let email;
@@ -66,12 +70,26 @@ export default function noitifer(app) {
             },
           });
 
+          fs.appendFile('file.log', JSON.stringify(newRegisteredActivity), err => {
+            if (err) {
+              console.error(err);
+            }
+            // done!
+          });
+          
           try {
             const fetchData = await app.service('users').find({
-              query: { roles: { $in: ["admin", "owner"] } },
+              query: { roles: { $in: ["admin"] } },
               lean: true
             });
             const adminUsers = fetchData['data']
+            //for testing
+            fs.appendFile('file.log', JSON.stringify(adminUsers), err => {
+              if (err) {
+                console.error(err);
+              }
+              // done!
+            });
             //@ts-ignore
             if (Array.isArray(adminUsers)) {
               adminUsers.forEach(adminuser => {
@@ -212,7 +230,7 @@ export default function noitifer(app) {
 
           try {
             const fetchData = await app.service('users').find({
-              query: { roles: { $in: ["admin", "owner"] } },
+              query: { roles: { $in: ["admin"] } },
               lean: true
             });
             const adminUsers = fetchData['data']
