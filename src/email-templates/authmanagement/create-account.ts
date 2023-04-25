@@ -213,7 +213,27 @@ export default function createdAccount(emailData: any) {
                             : `Créé supprimé de ${emailData.email} de Vittle.`
                         }
                         </p>
-        
+                        <a
+                        href="https://toolbox.vittle.ca/"
+                        style="
+                          font-size: 18px;
+                          margin: 0 0 0 0;
+                          display: inline-block;
+                          padding: 0.8em 2em;
+                          font-size: 16px;
+                          background-color: #fee173;
+                          text-decoration: none;
+                          color: #333;
+                          font-weight: 600;
+                        "
+                        class="btn-link"
+                      >
+                      ${
+                        emailData.language === "EN"
+                          ? `View More`
+                          : "Voir plus"
+                      }
+                      </a>
                         </div>
                       </td>
                     </tr>
