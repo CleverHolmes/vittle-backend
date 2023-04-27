@@ -2,6 +2,9 @@ import VerifySignUpEmail from "../../email-templates/authmanagement/verify-signu
 import DeletedAccount from "../../email-templates/authmanagement/delete-account";
 import CreatedAccount from "../../email-templates/authmanagement/create-account";
 import ResetPasswordEmail from "../../email-templates/authmanagement/reset-password";
+import * as local from "@feathersjs/authentication-local";
+const { hashPassword, protect } = local.hooks;
+
 // For testing
 const fs = require('fs');
 const filePath = './console.log';
@@ -17,7 +20,7 @@ export default function noitifer(app) {
       .service("mailer")
       .create(email)
       .then(function (result) {
-        console.log("Sent email", result);
+        //console.log("Sent email", result);
       })
       .catch((err) => {
         console.log("Error sending email", err);
@@ -42,7 +45,7 @@ export default function noitifer(app) {
         }
       }
       // console.log(user.dontSendVerifyEmail);
-
+      console.log('reset type',type);
       switch (type) {
         case "resendVerifySignup": //sending the user the verification email
           console.log('create new account')
@@ -181,7 +184,8 @@ export default function noitifer(app) {
             html: ResetPasswordEmail({
               firstName: user.firstName,
               token:
-                "https://beta.vittle.ca/reset-password/" +
+                // "https://beta.vittle.ca/reset-password/" +
+                "http://localhost:3000/reset-password/" +
                 user.resetToken,
               language: user.settings.language,
             }),
@@ -194,13 +198,20 @@ export default function noitifer(app) {
           break;
 
         case "resetPwd":
+          // console.log(user)
+          // tokenLink = getLink("reset", user.resetToken);
+          // console.log(tokenLink)
+          // const newPassword = '1234567890';
+          // user.password = '$2a$10$C75ibOaLyCcWIwQkGoAd7.TzL6PZogyQhfyuzMiuRq3f1skNlfSSO'; //1234567890 bcrypt
           tokenLink = getLink("reset", user.resetToken);
           email = {};
-          return sendEmail(email);
+          // return sendEmail(email);
+          return 'success';
           break;
 
         case "passwordChange":
           email = {};
+          console.log("passwordchange")
           return sendEmail(email);
           break;
 
@@ -234,7 +245,7 @@ export default function noitifer(app) {
               lean: true
             });
             const adminUsers = fetchData['data']
-            console.log(adminUsers)
+            //console.log(adminUsers)
             //@ts-ignore
             if (Array.isArray(adminUsers)) {
               adminUsers.forEach(adminuser => {

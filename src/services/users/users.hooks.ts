@@ -79,18 +79,33 @@ export default {
     get: [
       // authenticate("jwt")
     ],
-    create: [hashPassword("password"), verifyHooks.addVerification()],
+    create: [hashPassword("password"), verifyHooks.addVerification(), 
+      async (context: any) => { console.log(context) }
+    
+
+    ],
     update: [
       hashPassword("password"),
       //authenticate("jwt")
+      // async (context: any) => { console.log('update')}
     ],
     patch: [
-      hashPassword("password"),
+      // hashPassword("password"),
       addPasswordToGuestAccount,
+      async (context: any) => { console.log('patch')}
 
-      // async (context: any) => { console.log(addPasswordToGuestAccount)},
-      // authenticate("jwt")'
-     
+      // (context: any) => {
+      //   if (context.data.password == true && context.data.token == true ) {
+      //     // const users: any = await app.service("users").find({
+      //     //   query: {
+      //     //     subscriptionId: subscriptionId,
+      //     //   },
+      //     // });
+      //     console.log('setnewpassword')
+          
+      //   }
+      // },
+
     ],
     remove: [authenticate("jwt")],
   },
@@ -133,9 +148,9 @@ export default {
       updateProfile,
       sendAddressUpdateEmail,
       addAddressUpdateActivity,
-     
+
     ],
-    remove: [ ],
+    remove: [],
   },
 
   error: {
