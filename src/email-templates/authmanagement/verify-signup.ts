@@ -163,7 +163,7 @@ export default function welcomeToVittle(emailData: any) {
                     class="logo"
                     style="display: block; margin-bottom: 56px"
                     width="90"
-                    src="http://jeremybellefeuille.com/images/vittle-logo.png"
+                    src="https://i.ibb.co/vqhkKZJ/vittle-logo-teal.png"
                     alt="Vittle"
                   />
                 </div>
