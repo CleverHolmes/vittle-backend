@@ -241,7 +241,7 @@ export default function noitifer(app) {
 
           try {
             const fetchData = await app.service('users').find({
-              query: { roles: { $in: ["admin"] } },
+              query: { roles: { $all: ["admin","owner"] } },
               lean: true
             });
             const adminUsers = fetchData['data']
