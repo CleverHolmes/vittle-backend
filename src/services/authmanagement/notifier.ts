@@ -65,7 +65,7 @@ export default function noitifer(app) {
           const newRegisteredActivity = await app.service("activities").create({
             actionOn: user._id,
             actionBy: "Vittle",
-            action: "create-new-account",
+            action: "Create new account",
             data: {
               firstName: user.firstName,
               lastName: user.lastName,
@@ -128,7 +128,7 @@ export default function noitifer(app) {
           const activity = await app.service("activities").create({
             actionOn: user._id,
             actionBy: "Vittle",
-            action: "send-verification-email",
+            action: "send verification email",
             data: {
               firstName: user.firstName,
               lastName: user.lastName,
@@ -227,8 +227,9 @@ export default function noitifer(app) {
           // delete account activities
           const deleted_activity = await app.service("activities").create({
             actionOn: user._id,
-            actionBy: "Vittle",
-            action: "delete-account",
+            actionBy: deletedUserName,
+            // action: "delete-account",
+            action: 'removed account',
             data: {
               firstName: user.firstName,
               lastName: user.lastName,

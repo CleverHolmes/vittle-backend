@@ -1,4 +1,5 @@
 import * as authentication from "@feathersjs/authentication";
+import activitiesService from "./activities.service";
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;

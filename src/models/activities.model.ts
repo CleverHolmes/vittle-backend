@@ -4,7 +4,7 @@
 // for more of what you can do here.
 import { Application } from "../declarations";
 
-export default function(app: Application) {
+export default function (app: Application) {
   const modelName = "activities";
   const mongooseClient = app.get("mongooseClient");
   const { Schema } = mongooseClient;
@@ -13,7 +13,9 @@ export default function(app: Application) {
       actionOn: { type: String, required: true },
       actionBy: { type: String, required: true },
       action: { type: String, required: true },
-      // type: { type: String, required: true },
+      //ADD Twinstar 2023/4/27 for admin dashboard notification
+      type: { type: String },
+      checked: { type: Boolean },
       jobId: { type: String },
       data: { type: Object }
     },
